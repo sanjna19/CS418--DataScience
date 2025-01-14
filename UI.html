@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Insights on NETFLIX - CS418 Project</title>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    p {
+        text-align: justify;
+    }
+    body {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #141414;
+        color: #fff;
+    }
+    .container {
+        text-align: center;
+        width: 80%;
+    }
+    .header {
+        margin-bottom: 30px;
+    }
+    .logo {
+        width: 200px; /* Increase as needed */
+        height: auto;
+        margin-bottom: 20px;
+        display: block; /* Center the logo */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .header h1 {
+        margin-bottom: 0; /* Remove space if needed */
+    }
+
+    .intro {
+        max-width: 50%; /* This will allow the intro to take the full width available */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    h2 {
+        color: #E50914; /* Netflix red */
+        text-align: center;
+    }
+
+    .visualization-panel {
+        display: none;
+    }
+    .visualization-panel.active-panel {
+        display: block;
+        text-align: left;
+        padding: 20px;
+        background-color: #181818;
+        border-radius: 8px;
+    }
+    .visualization-buttons {
+        margin-bottom: 30px;
+    }
+    .visualization-button {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        margin: 0 10px;
+        background-color: #E50914;
+        color: #fff;
+        font-size: 1.5rem;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .visualization-button:hover {
+        background-color: #181818;
+    }
+    .visualization-button.active {
+        box-shadow: 0 0 40px #E50914;
+    }
+    img {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 8px;
+    }
+    .panel-content {
+        max-width: 800px;
+        margin: auto;
+    }
+    .main-options {
+    margin-bottom: 20px;
+}
+
+.option-button {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px 20px;
+    background-color: #E50914; /* Netflix red */
+    color: #fff;
+    font-size: 1.2rem;
+    border-radius: 20px; /* Rounded corners for buttons */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.option-button:hover {
+    background-color: #f40612; /* Lighter red on hover */
+}
+
+.option-button.active {
+    box-shadow: 0 0 10px #E50914; /* Glowing effect for active option */
+}
+
+.hidden {
+    display: none; /* This class will hide elements */
+}
+
+
+</style>
+</head>
+<body>
+
+
+    <div id="introOverlay" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9999;">
+        <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+          <source src="intro.mov" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    
+
+<div class="container">
+    <div class="header">
+        <img src="logo2.png" alt="Netflix Logo" class="logo">
+        <h1 style="margin-bottom: 0; padding-bottom: 0%;">Data Insights on NETFLIX </h1>
+        <h4 style="margin-top: 0; padding-top: 0%; color: #E50914;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;CS418 PROJECT</h2>
+        <p class="intro" style="text-align: justify;">This project aims to uncover patterns in Netflix's vast library of films and TV shows, exploring how content types have evolved over time and identifying popular genres across different regions.</p>
+    </div>
+    <!-- Main options -->
+    <div class="main-options">
+        <div id="dataInsightsOption" class="option-button active">Data Insights</div>
+        <div id="interactiveDashboardOption" class="option-button">Interactive Dashboard</div>
+    </div>
+    <div id="visualizationButtons" class="visualization-buttons hidden">
+        <div id="btn1" class="visualization-button active">1</div>
+        <div id="btn2" class="visualization-button">2</div>
+        <div id="btn3" class="visualization-button">3</div>
+        <div id="btn4" class="visualization-button">4</div>
+        <div id="btn5" class="visualization-button">5</div>
+        <div id="btn6" class="visualization-button">6</div>
+    </div>
+    <div class="visualization-panel active-panel" id="panel">
+        <div class="panel-content">
+            <h2>Introduction</h2>
+            <p style="text-align: justify;">Embark on a data-driven journey as we explore patterns in Netflix's vast catalog, decipher the evolution of content types, and shed light on popular genres from various corners of the globe. Our team, the Black Hawks, employs a fusion of Netflix's metadata, IMDB ratings, and Rotten Tomatoes scores to provide a multifaceted perspective. Below are the visualizations that showcase our findings and illustrate the narratives hidden within the data.</p>
+        </div>
+    </div>
+    <div id="panel1" class="visualization-panel">
+        <div class="panel-content">
+            <h2>Number of Titles Added to Netflix (2000 - 2021)</h2>
+            <p>The line graph depicting the cumulative number of titles added each year illustrated a rapid increase in content addition, especially in recent years. This growth trend supports the hypothesis that Netflix has been aggressively expanding its content library to cater to a wider audience and to keep up with the competition.</p>
+            <img src="img1.png" alt="Number of Titles Added to Netflix">
+        </div>
+    </div>
+    <div id="panel2" class="visualization-panel">
+        <div class="panel-content">
+            <h2>Distribution of Netflix Content by Type Over the Years (2000 - Present)</h2>
+            <p>This visualization highlighted the growth in the number of Movies and TV Shows on Netflix over time. The increasing trend in both categories, especially the notable surge in movies around the 2010s, suggests Netflix's expanding library and possibly a strategic shift towards offering a more diverse set of content. This shift might be in response to evolving viewer preferences and the competitive streaming landscape.</p>
+            <img src="img2.png" alt="Distribution of Netflix Content by Type">
+        </div>
+    </div>
+    <div id="panel3" class="visualization-panel">
+        <div class="panel-content">
+            <h2>IMDb Score Distribution Across Top 10 Netflix Genres</h2>
+            <p>The box plot shows IMDb score distributions across various Netflix genres, the hypothesis could be exploring the quality of content as seen by viewers across different genres. The intent of this analysis is to identify which genres consistently deliver content that is highly rated, as well as to understand the range and distribution of viewer opinions within each genre. Such insights can be useful for Netflix's decisions regarding which genres to invest in and what type of content to prioritize in order to maintain high viewer satisfaction and engagement. The dots outside the boxes seen are the outliers. They represent IMDb scores that fall outside the typical range (IQR), either unusually high or low compared to the bulk of scores in that genre.</p>
+            <img src="img3.png" alt="IMDb Score Distribution Across Top 10 Netflix Genres">
+        </div>
+    </div>
+    <div id="panel4" class="visualization-panel">
+        <div class="panel-content">
+            <h2>Word Cloud for Horror Genre</h2>
+            <p>This is a word cloud for the horror genre, which is a visual representation of text data where the size of each word indicates its frequency or importance within a certain context—in this case, likely keywords associated with horror movies or TV shows on a platform such as Netflix. Prominent words like "horror," "mysterious," "supernatural," and "family," among others, suggest common themes and elements that audiences might expect from horror content. The hypothesis behind creating such a word cloud could be to visually analyze and present the most frequent elements or themes that define the horror genre on Netflix. This can help content creators and marketers to understand popular tropes within the genre and tailor their productions and promotions to match audience expectations and trends.</p>
+            <img src="img4.png" alt="Word Cloud for Horror Genre">
+        </div>
+    </div>
+    <div id="panel5" class="visualization-panel">
+        <div class="panel-content">
+            <h2>Netflix Content Growth Over Time by Genre</h2>
+            <p>This visualization provides insights into how the variety and volume of content in different genres have evolved on Netflix over the years. By tracking the number of titles added each year across various genres, you can identify trends in content acquisition and production, such as the increasing popularity of certain genres over time. This can reflect changing viewer preferences and strategic decisions by Netflix to cater to these trends.</p>
+            <img src="img5.png" alt="Netflix Content Growth Over Time by Genre">
+        </div>
+    </div>
+    <div id="panel6" class="visualization-panel">
+        <div class="panel-content">
+            <h2>Viewer Ratings (IMDb Score) vs. Release Year for Netflix Titles</h2>
+            <p>The scatter plot of viewer ratings (IMDb Score) against the release year for Netflix titles offers a way to assess the perceived quality of content over time. This visualization can uncover insights such as trends in content quality and viewer reception over the years, helping to identify which periods and types of content have been most successful or well-received.</p>
+            <img src="img6.png" alt="Viewer Ratings (IMDb Score) vs. Release Year for Netflix Titles">
+        </div>
+    </div>
+    <div id="interactiveDashboardContent" class="hidden">
+    <iframe id="dashAppFrame" src="http://127.0.0.1:8050" style="width: 100%; height: calc(100vh - 100px); border: none;"></iframe>
+    </div>
+    
+</div>
+
+
+<script>
+    // JavaScript to handle the main option switching
+    document.getElementById('dataInsightsOption').addEventListener('click', function() {
+        // Show visualization buttons
+        document.getElementById('visualizationButtons').classList.remove('hidden');
+        // Hide Interactive Dashboard content if necessary
+        document.getElementById('interactiveDashboardContent').classList.add('hidden');
+    });
+    
+    // JavaScript to handle panel switching
+    var buttons = document.querySelectorAll('.visualization-button');
+    var panels = document.querySelectorAll('.visualization-panel');
+    var globalpanelid
+    buttons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            // Hide main options
+            // Remove active class from all buttons
+            buttons.forEach(function(button) {
+                button.classList.remove('active');
+            });
+            // Add active class to the clicked button
+            btn.classList.add('active');
+            // Get the corresponding panel
+            var panelId = btn.getAttribute('id').replace('btn', 'panel');
+            // Hide all panels
+            panels.forEach(function(panel) {
+                panel.classList.remove('active-panel');
+            });
+            // Show the active panel
+            document.getElementById(panelId).classList.add('active-panel');
+            globalpanelid=panelId;
+        });
+    });
+    
+    // Optional: Remove the video overlay after a certain time
+    setTimeout(function() {
+        document.getElementById('introOverlay').style.display = 'none';
+    }, 4000); // Adjust time as needed
+    
+    // Optional: Add functionality for "Interactive Dashboard" option if you have the content
+    document.getElementById('interactiveDashboardOption').addEventListener('click', function() {
+        // Hide current active panel
+        document.getElementById(globalpanelid).classList.remove('active-panel');
+        // Hide visualization buttons
+        document.getElementById('visualizationButtons').classList.add('hidden');
+        // Show Interactive Dashboard content
+        document.getElementById('interactiveDashboardContent').classList.remove('hidden');
+        document.getElementById('interactiveDashboardContent').classList.add('active-panel');
+    });
+    </script>
+
+</body>
+</html>
